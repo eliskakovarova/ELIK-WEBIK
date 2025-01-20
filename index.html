@@ -1,1 +1,45 @@
 html
+
+
+
+
+
+
+
+
+
+
+
+                                                
+
+                                                      
+                                                      AHOJ
+                                                      <!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barva Pozadí</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Barva pozadí se bude měnit!</h1>
+    <button onclick="changeBackgroundColor()">Změnit barvu</button>
+
+    <script>
+        function changeBackgroundColor() {
+            const colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#9B59B6', '#1ABC9C'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+    </script>
+</body>
+</html>
+
+
