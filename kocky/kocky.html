@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kočky</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kočky - Fotogalerie</h1>
+
+    <div class="gallery">
+        <img src="cat1.jpg" alt="Kočka 1">
+        <img src="cat2.jpg" alt="Kočka 2">
+        <img src="cat3.jpg" alt="Kočka 3">
+        <img src="cat4.jpg" alt="Kočka 4">
+        <img src="cat5.jpg" alt="Kočka 5">
+        <img src="cat6.jpg" alt="Kočka 6">
+        <img src="cat7.jpg" alt="Kočka 7">
+        <img src="cat8.jpg" alt="Kočka 8">
+    </div>
+
+</body>
+</html>
