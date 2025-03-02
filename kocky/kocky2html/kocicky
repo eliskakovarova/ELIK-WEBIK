@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Koček</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #5D5D5D;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+        .cat-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .cat-card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+        }
+        .cat-card h3 {
+            margin-top: 10px;
+            color: #4CAF50;
+        }
+        .cat-card p {
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>8 Koček</h1>
+
+    <div class="container">
+        <div class="cat-card">
+            <img src="cat1.jpg" alt="Kočka 1">
+            <h3>Kočka 1</h3>
+            <p>Kočka s velkýma očima, velmi přítulná a hravá.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat2.jpg" alt="Kočka 2">
+            <h3>Kočka 2</h3>
+            <p>Má ráda klid a spánek, ideální společník na lenošení.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat3.jpg" alt="Kočka 3">
+            <h3>Kočka 3</h3>
+            <p>Veselá kočka, která miluje venkovní dobrodružství.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat4.jpg" alt="Kočka 4">
+            <h3>Kočka 4</h3>
+            <p>Rychlá a hbitá, skvělá pro chytání myší.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat5.jpg" alt="Kočka 5">
+            <h3>Kočka 5</h3>
+            <p>Vychovaná kočka, která miluje pozornost a pohlazení.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat6.jpg" alt="Kočka 6">
+            <h3>Kočka 6</h3>
+            <p>Kočka s elegantním vzhledem a velmi přátelskou povahou.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat7.jpg" alt="Kočka 7">
+            <h3>Kočka 7</h3>
+            <p>Miluje hračky a interakci s lidmi, vždy plná energie.</p>
+        </div>
+        <div class="cat-card">
+            <img src="cat8.jpg" alt="Kočka 8">
+            <h3>Kočka 8</h3>
+            <p>Má ráda klidné prostředí a občasné procházky na vodítku.</p>
+        </div>
+    </div>
+
+</body>
+</html>
