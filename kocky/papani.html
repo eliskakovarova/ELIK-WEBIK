@@ -3,142 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Šablona se 4 okny</title>
+    <title>Kočičí jídlo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #f0f0f0;
         }
-
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Dvě sloupce */
-            gap: 20px;
-            padding: 20px;
-        }
-
         .window {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            border: 2px solid #000;
+            width: 250px;
+            height: 350px;
+            margin: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 8px;
         }
-
-        .window h2 {
-            font-size: 1.5rem;
-            color: #333;
+        .window img {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
         }
-
+        .window h3 {
+            margin: 10px 0;
+        }
         .window p {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr; /* Na menších obrazovkách bude pouze jeden sloupec */
-            }
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>Strava koček</h1>
-</header>
-
-<div class="container">
     <div class="window">
-        <h2>Granule</h2>
-        <!DOCTYPE html>
-<html lang="cs">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Šablona se 4 okny</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Dvě sloupce */
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .window {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .window h2 {
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .window p {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr; /* Na menších obrazovkách bude pouze jeden sloupec */
-            }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Šablona se 4 okny</h1>
-</header>
-
-<div class="container">
-
-
-        <p>Toto je obsah prvního okna. Můžete sem přidat jakýkoliv text nebo obrázky o granulích pro kočky.</p>
+        <h3>Granule</h3>
+        <img src="https://example.com/granule.jpg" alt="Granule pro kočky">
+        <p>Granule pro kočky, bohaté na živiny, podporující zdraví kočky každý den.</p>
     </div>
+
     <div class="window">
-        <h2>Kapsy</h2>
-        <p>Toto je obsah druhého okna. Zde můžete přidat další informace o kapsách pro kočky.</p>
+        <h3>Konzervy</h3>
+        <img src="https://example.com/konzervy.jpg" alt="Konzervy pro kočky">
+        <p>Výživné konzervy s vysokým podílem masa a přírodními ingrediencemi pro vaši kočičku.</p>
     </div>
+
     <div class="window">
-        <h2>Konzervy</h2>
-        <p>Toto je obsah třetího okna. Text může být libovolný a struktura je flexibilní pro popis konzerv pro kočky.</p>
+        <h3>Kapsy</h3>
+        <img src="https://example.com/kapsy.jpg" alt="Kapsy pro kočky">
+        <p>Šťavnaté kapsy plné chutného masového náplně, ideální jako pamlsek nebo doplněk stravy.</p>
     </div>
+
     <div class="window">
-        <h2>Pamlsky</h2>
-        <p>A toto je obsah čtvrtého okna. Použijte tuto šablonu pro různé účely, například pro popis pamlsků.</p>
+        <h3>Pamlsky</h3>
+        <img src="https://example.com/pamlsky.jpg" alt="Pamlsky pro kočky">
+        <p>Sladké pamlsky pro kočky, které jim přinesou radost a zábavu při každém zakousnutí.</p>
     </div>
-</div>
 
 </body>
 </html>
+
 
 
