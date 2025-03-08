@@ -3,86 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domácí Ptáci</title>
+    <title>Hračky</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e1d7d7;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        header {
-            background-color: #ffffff;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .bird-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            padding: 15px;
-        }
-        .bird-card img {
-            width: 100%;
+        .window {
+            border: 2px solid #000;
+            width: 200px;
             height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
         }
-        .bird-card h3 {
-            margin-top: 10px;
-            font-size: 1.5rem;
-            color: #333;
-        }
-        .bird-card p {
-            font-size: 1rem;
-            color: #555;
+        .window h3 {
+            margin: 0;
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>Seznam Domácích Ptáků</h1>
-</header>
-
-<div class="container">
-    <div class="bird-card">
-        <img src="https://www.aromakh.cz/editor/image/novinky4/90/navrh-bez-nazvu-2023-08-07t205238.467-1_obrazek_90_6530e7ea9b006.jpg" alt="Papoušek">
-        <h3>Papoušek</h3>
-        <p>Papoušci jsou známí svou inteligencí a schopností napodobovat zvuky.</p>
+    <div class="window">
+        <h3>Hračky 1</h3>
     </div>
-    <div class="bird-card">
-        <img src="https://img.superzoo.cz/galerie/1_76369/kanarek-domaci-serinus-canaria-domestica-default.jpg?v=1675843441" alt="Kanárci">
-        <h3>Kanárci</h3>
-        <p>Kanárci jsou malí zpěvní ptáci známí svým melodickým zpěvem.</p>
+    <div class="window">
+        <h3>Hračky 2</h3>
     </div>
-    <div class="bird-card">
-        <img src="https://www.zoohit.cz/magazin/wp-content/uploads/2018/07/2-andulky-768x513.jpg" alt="Andulka">
-        <h3>Andulka</h3>
-        <p>Andulky jsou velmi oblíbení domácí ptáci, často chovaní pro svou hravost.</p>
+    <div class="window">
+        <h3>Hračky 3</h3>
     </div>
-    <div class="bird-card">
-        <img src="https://www.slepicar.cz/web-data/plugins/blog/1/375.jpg" alt="Křepelka">
-        <h3>Křepelka</h3>
-        <p>Křepelky jsou malé a odolné ptáky, kteří se často chovají pro jejich vejce.</p>
+    <div class="window">
+        <h3>Hračky 4</h3>
     </div>
-    <!-- New bird card -->
-    <div class="bird-card">
-        <img src="https://www.example.com/new-bird.jpg" alt="Nový Pták">
-        <h3>Nový Pták</h3>
-        <p>Nový pták je krásný a má unikátní zpěv.</p>
-    </div>
-</div>
-
 </body>
 </html>
+
 
