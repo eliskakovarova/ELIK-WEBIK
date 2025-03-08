@@ -9,66 +9,87 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
             background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
         }
         .window {
             border: 2px solid #000;
-            width: 250px;
-            height: 350px;
-            margin: 10px;
-            padding: 15px;
+            width: 280px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            box-sizing: border-box;
-            background-color: #fff;
-            border-radius: 8px;
         }
         .window img {
-            max-width: 100%;
-            max-height: 150px;
+            width: 100%;
+            height: 180px;
             object-fit: cover;
-            border-radius: 8px;
+            border-bottom: 2px solid #000;
+        }
+        .content {
+            padding: 15px;
+            text-align: center;
         }
         .window h3 {
             margin: 10px 0;
         }
         .window p {
             font-size: 14px;
+            color: #555;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+            gap: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="window">
-        <h3>Granule</h3>
-        <img src="https://example.com/granule.jpg" alt="Granule pro kočky">
-        <p>Granule pro kočky, bohaté na živiny, podporující zdraví kočky každý den.</p>
+    <div class="container">
+        <!-- Granule a Kapsy vedle sebe -->
+        <div class="window">
+            <img src="https://example.com/granule.jpg" alt="Granule pro kočky">
+            <div class="content">
+                <h3>Granule</h3>
+                <p>Granule pro kočky, bohaté na živiny, podporující zdraví kočky každý den.</p>
+            </div>
+        </div>
+        <div class="window">
+            <img src="https://example.com/kapsy.jpg" alt="Kapsy pro kočky">
+            <div class="content">
+                <h3>Kapsy</h3>
+                <p>Šťavnaté kapsy plné chutného masového náplně, ideální jako pamlsek nebo doplněk stravy.</p>
+            </div>
+        </div>
+        
+        <!-- Pamlsky a Konzervy vedle sebe -->
+        <div class="window">
+            <img src="https://example.com/pamlsky.jpg" alt="Pamlsky pro kočky">
+            <div class="content">
+                <h3>Pamlsky</h3>
+                <p>Sladké pamlsky pro kočky, které jim přinesou radost a zábavu při každém zakousnutí.</p>
+            </div>
+        </div>
+        <div class="window">
+            <img src="https://example.com/konzervy.jpg" alt="Konzervy pro kočky">
+            <div class="content">
+                <h3>Konzervy</h3>
+                <p>Výživné konzervy s vysokým podílem masa a přírodními ingrediencemi pro vaši kočičku.</p>
+            </div>
+        </div>
     </div>
-
-    <div class="window">
-        <h3>Konzervy</h3>
-        <img src="https://example.com/konzervy.jpg" alt="Konzervy pro kočky">
-        <p>Výživné konzervy s vysokým podílem masa a přírodními ingrediencemi pro vaši kočičku.</p>
-    </div>
-
-    <div class="window">
-        <h3>Kapsy</h3>
-        <img src="https://example.com/kapsy.jpg" alt="Kapsy pro kočky">
-        <p>Šťavnaté kapsy plné chutného masového náplně, ideální jako pamlsek nebo doplněk stravy.</p>
-    </div>
-
-    <div class="window">
-        <h3>Pamlsky</h3>
-        <img src="https://example.com/pamlsky.jpg" alt="Pamlsky pro kočky">
-        <p>Sladké pamlsky pro kočky, které jim přinesou radost a zábavu při každém zakousnutí.</p>
-    </div>
-
 </body>
 </html>
+
 
 
 
