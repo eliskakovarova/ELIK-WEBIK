@@ -7,119 +7,77 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 1000px;
-        }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Nejčastější kočky domácností</h1>
-
-    <div class="gallery">
-<p>Perská kočka</p>
-        <img src="https://www.literadesign.cz/wp-content/uploads/2017/10/kocka_perska_01.jpg" alt="Kočka 1">
-         <p>Perská kočka má dlouhou, hustou srst, kulatý obličej a výrazné oči; je klidná, přítulná a vyhledává tiché a pohodlné prostředí.</p>
-         <p>Britská kočka</p>
-        <img src="https://www.spokojenypes.cz/ImgP.ashx?co=/ImgGalery/Img1/Atlas/britska-kocka.jpg&fd=a5&pa=1" alt="Kočka 2">
-        <p>Britská kočka je klidná, vyrovnaná a přátelská, s hustou, krátkou srstí a kulatým obličejem, která ji dává charakteristický vzhled; je nezávislá, ale zároveň věrná svým majitelům a dobře se snáší s dětmi i jinými zvířaty.</p>
-        <p>Sibiřská kočka</p>
-        <img src="https://cdn.myshoptet.com/usr/www.chlupaci.cz/user/documents/upload/clanky-kocici-plemena/Sibirska-kocka/Kocici-plemeno-sibirska-kocka%20(15).jpg" alt="Kočka 3">
-        <P>Sibiřská kočka je silná a svalnatá kočka s hustou, voděodolnou srstí, která ji chrání v chladném klimatu; je hravá, inteligentní a velmi přítulná, přičemž dobře vychází s dětmi a dalšími zvířaty.</P>
-        <img src="https://www.thesprucepets.com/thmb/D5s03LINbIYpZuiG6uvBpKrAKXk=/3500x0/filters:no_upscale():strip_icc()/GettyImages-623368786-f66c97ad6d2d494287b448415f4340a8.jpg" alt="Kočka 4">
-        <p>Birmanská kočka</p>
-        <p>Birmanská kočka je elegantní a přítulná plemena s krásnou modro-šedou srstí a výraznými zlatými očima, známá svou přátelskou povahou a věrností vůči svým majitelům.</p>
-        <img src="https://cfa.org/wp-content/uploads/2024/02/Sphynx_grid.jpg" alt="Kočka 5">
-        <p>Kočka Sphynx</p>
-        <P>Sphynx je jedinečné plemeno kočky známé svou bezsrstou pokožkou, která je hladká a vrásčitá; je velmi přítulná, společenská a energická, ráda se mazlí a vyhledává pozornost, což z ní činí skvělého společníka pro aktivní rodiny.</P>
-        <img src="https://cdn.labet.cz/data/user-content/obrazky_atlas_kocek/Ragdoll/ragdoll.jpg" alt="Kočka 6">
-        <p>Kočka Ragdoll</p>
-        <p>Ragdoll je klidná a přítulná kočka, známá svou tendencí se uvolnit a "povolit" jako hadrová panenka, když ji vezmete do náruče; má velké, modré oči a dlouhou, hedvábnou srst, která ji činí velmi atraktivní.</p>
-        <img src="https://www.zoohit.cz/magazin/wp-content/uploads/2018/08/Beng%C3%A1lsk%C3%A1-ko%C4%8Dka-768x582.jpg" alt="Kočka 7">
-        <p>Bengálská kočka</p>
-        <p>Toto je bengálská kočka, známá svým divokým vzhledem a krásně mramorovanou nebo skvrnitou srstí, která připomíná tygra nebo leoparda. Má energickou a hravou povahu, je velmi inteligentní a ráda objevuje nové věci.</p>
-        <img src="https://www.thesprucepets.com/thmb/8o5e2mkJcAr4kODvsllTf2xiioo=/4778x0/filters:no_upscale():strip_icc()/GettyImages-925319984-36b97d913d934d229d8b0d528a7da64e.jpg" alt="Kočka 8">
-        <p>Birmanská kočka</p>
-        <p>Toto je birmanská kočka, známá svou elegantní srstí v krémových a zlatých odstínech, s tmavšími "bodovými" částmi na uších, tlapkách a ocase. Má velké, modré oči a přátelský, klidný výraz, což odráží její přítulnou a láskyplnou povahu.</p>
-    </div>
-
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hlodavci</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-        }
-        .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            padding: 2rem;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
-        .rodent {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 1rem;
-            padding: 1rem;
-            width: 250px;
+        .cat-box {
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             text-align: center;
         }
-        .rodent img {
+        .cat-box img {
             width: 100%;
-            height: auto;
             border-radius: 8px;
         }
-        h2 {
-            color: #333;
+        .cat-name {
+            font-weight: bold;
+            margin-top: 10px;
         }
-        p {
-            color: #666;
+        .cat-description {
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
 <body>
+    <div class="cat-box">
+        <img src="https://example.com/sibirska.jpg" alt="Sibiřská kočka">
+        <div class="cat-name">Sibiřská kočka</div>
+        <div class="cat-description">Sibiřská kočka je hravá a energická. Má hustou srst a miluje vodu.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/perska.jpg" alt="Perská kočka">
+        <div class="cat-name">Perská kočka</div>
+        <div class="cat-description">Perská kočka je klidná a mazlivá. Je známá svou dlouhou, huňatou srstí.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/ragdoll.jpg" alt="Ragdoll kočka">
+        <div class="cat-name">Ragdoll</div>
+        <div class="cat-description">Ragdoll je přátelská a klidná kočka, která se ráda nosí v náruči.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/sphynx.jpg" alt="Sphynx kočka">
+        <div class="cat-name">Sphynx</div>
+        <div class="cat-description">Sphynx je bezsrstá kočka, která je známá svou přátelskou povahou a láskou k lidem.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/birmanska.jpg" alt="Birmánská kočka">
+        <div class="cat-name">Birmánská kočka</div>
+        <div class="cat-description">Birmánská kočka je elegantní a klidná, s krásnýma modrýma očima.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/mainska.jpg" alt="Mainská mývalí kočka">
+        <div class="cat-name">Mainská mývalí</div>
+        <div class="cat-description">Mainská mývalí kočka je velká, silná a má dlouhou, hustou srst, která ji chrání před chladem.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/skotska.jpg" alt="Skotská klapouchá kočka">
+        <div class="cat-name">Skotská klapouchá</div>
+        <div class="cat-description">Skotská klapouchá kočka je milá a tichá, známá pro své uši, které se sklápějí směrem dopředu.</div>
+    </div>
+    <div class="cat-box">
+        <img src="https://example.com/barmska.jpg" alt="Barmská kočka">
+        <div class="cat-name">Barmská kočka</div>
+        <div class="cat-description">Barmská kočka je velmi přítulná a miluje společnost, má lesklou srst a zlaté oči.</div>
+    </div>
+</body>
+</html>
 
 
