@@ -1,4 +1,3 @@
-<!-- hracky.html -->
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -20,6 +19,7 @@
         }
         main {
             padding: 20px;
+            text-align: center;
         }
         nav {
             text-align: center;
@@ -40,11 +40,19 @@
             width: 100%;
             bottom: 0;
         }
-        img {
-            width: 100%;
-            max-width: 500px;
-            display: block;
-            margin: 20px auto;
+        /* Image styles */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px; /* Space between images */
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 200px; /* Fixed size for images */
+            height: 200px; /* Ensure uniform height */
+            object-fit: cover; /* Ensure images don't stretch */
+            border-radius: 8px; /* Optional: add rounded corners */
         }
     </style>
 </head>
@@ -63,10 +71,13 @@
         <h2>Hračky pro kočky</h2>
         <p>Kočky potřebují zábavu a stimulaci, aby byly šťastné. K tomu mohou posloužit různé hračky, jako jsou míčky, peříčka nebo interaktivní zařízení, které je udrží aktivní.</p>
         
-        <img src="data:image/jpeg;base64,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" alt="Hračky pro kočky" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2Net3E9hzIqm0Re2yOBH72yVPT3eJDySgvQ&s" alt="Hračky pro kočky" />
-        <img src="https://cdn.myshoptet.com/usr/www.rozchov.cz/user/shop/big/26595_mys-v-kleci-pro-kocky.jpg?61ae037c" alt="Hračky pro kočky" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ruN2ZjfZN96SsDZfdUI7BXy6OFX1IZmQWQ&s" alt="Hračky pro kočky" />
+        <!-- Image container with flexbox layout -->
+        <div class="image-container">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..." alt="Hračky pro kočky" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2Net3E9hzIqm0Re2yOBH72yVPT3eJDySgvQ&s" alt="Hračky pro kočky" />
+            <img src="https://cdn.myshoptet.com/usr/www.rozchov.cz/user/shop/big/26595_mys-v-kleci-pro-kocky.jpg?61ae037c" alt="Hračky pro kočky" />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-ruN2ZjfZN96SsDZfdUI7BXy6OFX1IZmQWQ&s" alt="Hračky pro kočky" />
+        </div>
 
     </main>
 
@@ -75,6 +86,7 @@
     </footer>
 </body>
 </html>
+
 
 
 
