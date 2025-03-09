@@ -1,4 +1,68 @@
 
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kočky - Vítejte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Flexbox layout for cat images */
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 23%; /* Adjust width for equal-sized images */
+            max-width: 300px;
+            display: block;
+        }
+
+        /* Section for cat description */
+        .description {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
     <header>
         <h1>Kočky</h1>
     </header>
@@ -9,15 +73,32 @@
             <a href="strava.html">Strava</a>
             <a href="hracky.html">Hračky</a>
         </nav>
+
         <h2>Vítejte na stránkách o kočkách!</h2>
         <p>Vyberte si jednu z kategorií, kterou chcete prozkoumat: Kočky, Strava, nebo Hračky pro kočky.</p>
+
+        <!-- Description about cats -->
+        <div class="description">
+            <h3>Popis koček</h3>
+            <p>Kočky jsou úžasní společníci, kteří jsou známí svou nezávislostí a hravostí. Jsou to velmi inteligentní a zvědavá zvířata, která si užívají interakce s lidmi, ale také si ráda užívají svůj klid a prostor. Kočky mají širokou škálu plemen a každé plemeno má své specifické vlastnosti a charakteristiku. Kočky jsou skvělými domácími mazlíčky pro lidi všech věkových kategorií.</p>
+        </div>
+
+        <!-- Image container for cat images -->
+        <div class="image-container">
+            <img src="https://via.placeholder.com/300x200?text=Ko%C4%8Dka+1" alt="Kočka 1" />
+            <img src="https://via.placeholder.com/300x200?text=Ko%C4%8Dka+2" alt="Kočka 2" />
+            <img src="https://via.placeholder.com/300x200?text=Ko%C4%8Dka+3" alt="Kočka 3" />
+            <img src="https://via.placeholder.com/300x200?text=Ko%C4%8Dka+4" alt="Kočka 4" />
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2025 Vše o kočkách</p>
     </footer>
+
 </body>
 </html>
+
 
 
 
