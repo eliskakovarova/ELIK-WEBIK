@@ -1,4 +1,60 @@
- <header>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kočky - Strava</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Flexbox layout for images */
+        .image-container {
+            display: flex;
+            justify-content: space-around; /* Distribute images evenly */
+            gap: 20px; /* Space between images */
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 200px; /* Fixed size for the images */
+            height: auto;
+            display: block;
+            object-fit: cover; /* Ensures the image fits well */
+        }
+    </style>
+</head>
+<body> <header>
         <h1>Kočky</h1>
     </header>
 
