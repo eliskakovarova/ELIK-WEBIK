@@ -41,15 +41,17 @@
         }
         /* Flexbox layout for images */
         .image-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two images per row */
             gap: 20px;
+            margin-top: 20px;
         }
         .image-container img {
-            width: 48%; /* Adjust width so two images fit next to each other */
-            max-width: 500px;
+            width: 100%;
+            height: auto;
+            max-width: 200px; /* Small size for the images */
             display: block;
+            object-fit: cover; /* Ensures the image fits well */
         }
     </style>
 </head>
@@ -66,9 +68,9 @@
         </nav>
 
         <h2>Strava koček</h2>
-        <p>Kočky jsou masožravci, což znamená, že jejich strava by měla obsahovat velké množství bílkovin. Důležitou součástí jejich jídelníčku jsou také vitamíny a minerály, které podporují jejich zdraví.Kromě toho je nezbytné, aby strava koček byla vyvážená, protože nedostatek některých živin může vést k různým zdravotním problémům, jako jsou problémy s kůží, srstí nebo trávicím systémem. Optimální strava by měla zahrnovat kvalitní maso, případně komerčně připravené krmivo, které je speciálně navrženo tak, aby splňovalo všechny nutriční potřeby koček. Vždy je také dobré věnovat pozornost tomu, jaké ingredience krmivo obsahuje, aby bylo bohaté na přírodní bílkoviny a neobsahovalo přebytek plnidel, která nejsou pro kočky prospěšná.“</p>
+        <p>Kočky jsou masožravci, což znamená, že jejich strava by měla obsahovat velké množství bílkovin. Důležitou součástí jejich jídelníčku jsou také vitamíny a minerály, které podporují jejich zdraví. Kromě toho je nezbytné, aby strava koček byla vyvážená, protože nedostatek některých živin může vést k různým zdravotním problémům, jako jsou problémy s kůží, srstí nebo trávicím systémem. Optimální strava by měla zahrnovat kvalitní maso, případně komerčně připravené krmivo, které je speciálně navrženo tak, aby splňovalo všechny nutriční potřeby koček. Vždy je také dobré věnovat pozornost tomu, jaké ingredience krmivo obsahuje, aby bylo bohaté na přírodní bílkoviny a neobsahovalo přebytek plnidel, která nejsou pro kočky prospěšná.</p>
 
-        <!-- Image container with flexbox layout -->
+        <!-- Image container with grid layout -->
         <div class="image-container">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-iJh-JBv-HGyWS4nQEG5z6TsVzKPdFHQqug&s" alt="Kočičí jídlo 1" />
             <img src="https://via.placeholder.com/500" alt="Kočičí jídlo 2" />
@@ -82,6 +84,7 @@
     </footer>
 </body>
 </html>
+
 
 
 
