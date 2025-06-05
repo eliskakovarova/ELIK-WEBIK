@@ -1,99 +1,47 @@
-import pygame
-import random
-import sys
+body {
 
-# Inicializace Pygame
-pygame.init()
+  text-align: center;
 
-# Konstanty
-SCREEN_WIDTH = 600
-SCREEN_HEIGHT = 400
-BALL_SIZE = 20
-PLAYER_WIDTH = 80
-PLAYER_HEIGHT = 20
-FPS = 60
+  background-color: #f0f8ff;
 
-# Barvy
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-BLACK = (0, 0, 0)
+  font-family: 'Comic Sans MS', cursive;
 
-# Nastavení okna
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Chyť míček!")
+}
 
-# Hráč (čtverec)
-player_x = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2
-player_y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10
-player_speed = 5
+h1 {
 
-# Míček
-ball_x = random.randint(0, SCREEN_WIDTH - BALL_SIZE)
-ball_y = 0
-ball_speed = 3
+  color: #ff69b4;
 
-# Skóre
-score = 0
+}
 
-# Písma
-font = pygame.font.SysFont(None, 36)
+canvas {
 
-# Funkce pro vykreslení textu (skóre)
-def draw_text(text, font, color, surface, x, y):
-    textobj = font.render(text, 1, color)
-    textrect = textobj.get_rect()
-    textrect.topleft = (x, y)
-    surface.blit(textobj, textrect)
+  border: 5px solid #ccc;
 
-# Hlavní herní smyčka
-running = True
-while running:
-    screen.fill(WHITE)
-    
-    # Zpracování událostí
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+  margin-top: 20px;
 
-    # Pohyb hráče
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT] and player_x > 0:
-        player_x -= player_speed
-    if keys[pygame.K_RIGHT] and player_x < SCREEN_WIDTH - PLAYER_WIDTH:
-        player_x += player_speed
+  background-color: #fff;
 
-    # Pohyb míčku
-    ball_y += ball_speed
-    if ball_y > SCREEN_HEIGHT:
-        # Míček spadl
-        if player_x <= ball_x <= player_x + PLAYER_WIDTH:
-            score += 1  # Hráč chytil míček
-        else:
-            running = False  # Konec hry, pokud míček spadne mimo dosah
+}
 
-        # Obnovení pozice míčku
-        ball_x = random.randint(0, SCREEN_WIDTH - BALL_SIZE)
-        ball_y = 0
+button {
 
-    # Vykreslení hráče (čtverec)
-    pygame.draw.rect(screen, BLUE, (player_x, player_y, PLAYER_WIDTH, PLAYER_HEIGHT))
+  margin-top: 20px;
 
-    # Vykreslení míčku
-    pygame.draw.circle(screen, RED, (ball_x + BALL_SIZE // 2, ball_y + BALL_SIZE // 2), BALL_SIZE // 2)
+  padding: 10px 20px;
 
-    # Vykreslení skóre
-    draw_text(f"Skóre: {score}", font, BLACK, screen, 10, 10)
+  font-size: 18px;
 
-    # Aktualizace obrazovky
-    pygame.display.flip()
+  background-color: #ffcc00;
 
-    # Ovládání FPS
-    pygame.time.Clock().tick(FPS)
+  border: none;
 
-# Ukončení Pygame
-pygame.quit()
-sys.exit()
+  border-radius: 10px;
+
+  cursor: pointer;
+
+}
+ 
 
 
 
