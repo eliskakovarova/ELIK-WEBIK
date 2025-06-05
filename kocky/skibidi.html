@@ -1,111 +1,110 @@
-import pygame
-import sys
-import random
-
-# Konstanty
-GRID_SIZE = 8  # Mřížka 8x8
-CELL_SIZE = 60  # Velikost buněk v pixelech
-WIDTH, HEIGHT = GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE + 100
-FPS = 60
-
-# Barvy
-WHITE = (255, 255, 255)
-GRAY = (200, 200, 200)
-BLUE = (0, 121, 241)
-RED = (242, 85, 96)
-GREEN = (106, 190, 48)
-YELLOW = (255, 221, 51)
-BLACK = (0, 0, 0)
-
-COLORS = [BLUE, RED, GREEN, YELLOW]
-
-pygame.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("BlockBuster 2D")
-font = pygame.font.SysFont(None, 36)
-clock = pygame.time.Clock()
-
-# Hrací mřížka
-grid = [[None for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
-
-# Generování náhodného tvaru
-def generate_piece():
-    color = random.choice(COLORS)
-    return {"color": color}
-
-current_piece = generate_piece()
-
-# Funkce pro vykreslení mřížky
-def draw_grid():
-    for y in range(GRID_SIZE):
-        for x in range(GRID_SIZE):
-            rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-            pygame.draw.rect(screen, GRAY, rect, 1)
-            if grid[y][x]:
-                pygame.draw.rect(screen, grid[y][x]["color"], rect.inflate(-4, -4))
-
-# Funkce pro zpracování umístění bloku
-def place_piece(x, y):
-    if grid[y][x] is None:
-        grid[y][x] = current_piece
-        return True
-    return False
-
-# Funkce pro kontrolu a vymazání řad/sloupců
-def check_and_clear():
-    global score
-    to_clear = []
-
-    # Kontrola řad
-    for y in range(GRID_SIZE):
-        if all(grid[y][x] and grid[y][x]["color"] == grid[y][0]["color"] for x in range(GRID_SIZE)):
-            to_clear.append(("row", y))
-
-    # Kontrola sloupců
-    for x in range(GRID_SIZE):
-        if all(grid[y][x] and grid[y][x]["color"] == grid[0][x]["color"] for y in range(GRID_SIZE)):
-            to_clear.append(("col", x))
-
-    # Vymazání
-    for mode, index in to_clear:
-        if mode == "row":
-            for x in range(GRID_SIZE):
-                grid[index][x] = None
-        else:
-            for y in range(GRID_SIZE):
-                grid[y][index] = None
-
-    return len(to_clear) * 10
-
-score = 0
-running = True
-while running:
-    screen.fill(WHITE)
-    draw_grid()
-
-    # Vykreslení skóre
-    score_text = font.render(f"Skóre: {score}", True, BLACK)
-    screen.blit(score_text, (10, HEIGHT - 40))
-
-    # Události
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            mx, my = pygame.mouse.get_pos()
-            grid_x = mx // CELL_SIZE
-            grid_y = my // CELL_SIZE
-
-            if place_piece(grid_x, grid_y):
-                score += check_and_clear()
-                current_piece = generate_piece()
-
-    pygame.display.flip()
-    clock.tick(FPS)
-
-pygame.quit()
-sys.exit()
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+let boxes = [];
+let targets = [];
+function getRandomColor() {
+ const colors = ["#FF6666", "#66FF66", "#6666FF", "#FFCC66", "#66FFFF"];
+ return colors[Math.floor(Math.random() * colors.length)];
+}
+function getRandomSize() {
+ return Math.floor(Math.random() * 40) + 40;
+}
+function createBox() {
+ const size = getRandomSize();
+ return {
+   x: Math.random() * (canvas.width - size),
+   y: Math.random() * (canvas.height - size),
+   size,
+   color: getRandomColor(),
+   isDragging: false
+ };
+}
+function createTarget(size, color) {
+ return {
+   x: Math.random() * (canvas.width - size),
+   y: Math.random() * (canvas.height - size),
+   size,
+   color
+ };
+}
+function generateGameObjects() {
+ boxes = [];
+ targets = [];
+ for (let i = 0; i < 3; i++) {
+   const box = createBox();
+   const target = createTarget(box.size, box.color);
+   boxes.push(box);
+   targets.push(target);
+ }
+}
+function draw() {
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+ // Draw targets
+ targets.forEach(t => {
+   ctx.fillStyle = t.color;
+   ctx.globalAlpha = 0.3;
+   ctx.fillRect(t.x, t.y, t.size, t.size);
+   ctx.globalAlpha = 1;
+ });
+ // Draw boxes
+ boxes.forEach(b => {
+   ctx.fillStyle = b.color;
+   ctx.fillRect(b.x, b.y, b.size, b.size);
+ });
+}
+let selectedBox = null;
+let offsetX, offsetY;
+canvas.addEventListener("mousedown", (e) => {
+ const rect = canvas.getBoundingClientRect();
+ const mx = e.clientX - rect.left;
+ const my = e.clientY - rect.top;
+ boxes.forEach(box => {
+   if (mx >= box.x && mx <= box.x + box.size &&
+       my >= box.y && my <= box.y + box.size) {
+     selectedBox = box;
+     offsetX = mx - box.x;
+     offsetY = my - box.y;
+     box.isDragging = true;
+   }
+ });
+});
+canvas.addEventListener("mouseup", () => {
+ if (selectedBox) {
+   checkMatch(selectedBox);
+   selectedBox.isDragging = false;
+   selectedBox = null;
+ }
+});
+canvas.addEventListener("mousemove", (e) => {
+ if (selectedBox && selectedBox.isDragging) {
+   const rect = canvas.getBoundingClientRect();
+   const mx = e.clientX - rect.left;
+   const my = e.clientY - rect.top;
+   selectedBox.x = mx - offsetX;
+   selectedBox.y = my - offsetY;
+   draw();
+ }
+});
+function checkMatch(box) {
+ targets.forEach((target, i) => {
+   if (
+     Math.abs(box.x - target.x) < 20 &&
+     Math.abs(box.y - target.y) < 20 &&
+     box.color === target.color &&
+     Math.abs(box.size - target.size) < 10
+   ) {
+     // Correct match
+     boxes.splice(i, 1, createBox());
+     targets.splice(i, 1, createTarget(box.size, box.color));
+   }
+ });
+}
+function restartGame() {
+ generateGameObjects();
+ draw();
+}
+generateGameObjects();
+draw();
 
 
 
