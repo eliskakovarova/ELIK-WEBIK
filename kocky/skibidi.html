@@ -1,15 +1,10 @@
-git init
-git add .
-git commit -m "Initial commit of BlockBuster 2D game"
-git remote add origin <URL_REPO>
-git push -u origin master
 import pygame
 import sys
 import random
 
 # Konstanty
-GRID_SIZE = 8
-CELL_SIZE = 60
+GRID_SIZE = 8  # Mřížka 8x8
+CELL_SIZE = 60  # Velikost buněk v pixelech
 WIDTH, HEIGHT = GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE + 100
 FPS = 60
 
@@ -111,6 +106,7 @@ while running:
 
 pygame.quit()
 sys.exit()
+
 
 
 
