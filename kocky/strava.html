@@ -1,88 +1,148 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kočky - Strava</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        main {
-            padding: 20px;
-        }
-        nav {
-            text-align: center;
-            margin: 20px 0;
-        }
-        nav a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        /* Flexbox layout for images */
-        .image-container {
-            display: flex;
-            justify-content: space-around; /* Distribute images evenly */
-            gap: 20px; /* Space between images */
-            margin-top: 20px;
-        }
-        .image-container img {
-            width: 200px; /* Fixed size for the images */
-            height: auto;
-            display: block;
-            object-fit: cover; /* Ensures the image fits well */
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Kočky - Strava</h1>
-    </header>
+import pygame
+import sys
+import random
 
-    <main>
-        <nav>
-            <a href="kocky.html">Kočky</a>
-            <a href="hracky.html">Hračky</a>
-        </nav>
+# Konstanty
+GRID_SIZE = 10
+CELL_SIZE = 40
+WIDTH, HEIGHT = GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE + 100
+FPS = 60
 
-        <h2>Strava koček</h2>
-        <p>Kočky jsou masožravci, což znamená, že jejich strava by měla obsahovat velké množství bílkovin. Důležitou součástí jejich jídelníčku jsou také vitamíny a minerály, které podporují jejich zdraví. Kromě toho je nezbytné, aby strava koček byla vyvážená, protože nedostatek některých živin může vést k různým zdravotním problémům, jako jsou problémy s kůží, srstí nebo trávicím systémem. Optimální strava by měla zahrnovat kvalitní maso, případně komerčně připravené krmivo, které je speciálně navrženo tak, aby splňovalo všechny nutriční potřeby koček. Vždy je také dobré věnovat pozornost tomu, jaké ingredience krmivo obsahuje, aby bylo bohaté na přírodní bílkoviny a neobsahovalo přebytek plnidel, která nejsou pro kočky prospěšná.</p>
+# Barvy
+WHITE = (255, 255, 255)
+GRAY = (200, 200, 200)
+BLUE = (0, 121, 241)
+RED = (242, 85, 96)
+GREEN = (106, 190, 48)
+BLACK = (0, 0, 0)
 
-        <!-- Image container with flexbox layout -->
-        <div class="image-container">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-iJh-JBv-HGyWS4nQEG5z6TsVzKPdFHQqug&s" alt="Kočičí jídlo 1" />
-            <img src="data:image/jpeg;base64,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" alt="Kočičí jídlo 2" />
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuURQTM1SjxftMmcOA9wpeU56EXMk4VSOeeg&s" alt="Kočičí jídlo 3" />
-            <img src="data:image/jpeg;base64,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" alt="Kočičí jídlo 4" />
-        </div>
-    </main>
+COLORS = [BLUE, RED, GREEN]
 
-    <footer>
-        <p>&copy; pouze pro studijní účely </p>
-    </footer>
-</body>
-</html>
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("ColorGrid")
+font = pygame.font.SysFont(None, 36)
+clock = pygame.time.Clock()
 
+# Hrací mřížka
+grid = [[None for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
+
+# Tvar = [(x, y), (x, y), ...]
+SHAPES = [
+    [(0, 0)],
+    [(0, 0), (1, 0)],
+    [(0, 0), (0, 1)],
+    [(0, 0), (1, 0), (0, 1)],
+    [(0, 0), (1, 0), (2, 0)],
+    [(0, 0), (0, 1), (0, 2)],
+    [(0, 0), (1, 0), (1, 1)],
+]
+
+# Generování náhodného tvaru
+def generate_piece():
+    shape = random.choice(SHAPES)
+    color = random.choice(COLORS)
+    return {"shape": shape, "color": color}
+
+current_pieces = [generate_piece() for _ in range(3)]
+selected_piece = None
+
+def draw_grid():
+    for y in range(GRID_SIZE):
+        for x in range(GRID_SIZE):
+            rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+            pygame.draw.rect(screen, GRAY, rect, 1)
+            if grid[y][x]:
+                pygame.draw.rect(screen, grid[y][x], rect.inflate(-4, -4))
+
+def draw_pieces():
+    for i, piece in enumerate(current_pieces):
+        for px, py in piece["shape"]:
+            rect = pygame.Rect(i * 100 + px * 20 + 50, HEIGHT - 80 + py * 20, 18, 18)
+            pygame.draw.rect(screen, piece["color"], rect)
+
+def can_place(piece, x, y):
+    for dx, dy in piece["shape"]:
+        nx, ny = x + dx, y + dy
+        if nx < 0 or ny < 0 or nx >= GRID_SIZE or ny >= GRID_SIZE:
+            return False
+        if grid[ny][nx]:
+            return False
+    return True
+
+def place_piece(piece, x, y):
+    for dx, dy in piece["shape"]:
+        nx, ny = x + dx, y + dy
+        grid[ny][nx] = piece["color"]
+
+def check_and_clear():
+    global score
+    to_clear = []
+
+    for y in range(GRID_SIZE):
+        if all(grid[y][x] for x in range(GRID_SIZE)):
+            to_clear.append(("row", y))
+
+    for x in range(GRID_SIZE):
+        if all(grid[y][x] for y in range(GRID_SIZE)):
+            to_clear.append(("col", x))
+
+    for mode, index in to_clear:
+        if mode == "row":
+            for x in range(GRID_SIZE):
+                grid[index][x] = None
+        else:
+            for y in range(GRID_SIZE):
+                grid[y][index] = None
+
+    return len(to_clear) * 10
+
+def any_moves_left():
+    for piece in current_pieces:
+        for y in range(GRID_SIZE):
+            for x in range(GRID_SIZE):
+                if can_place(piece, x, y):
+                    return True
+    return False
+
+score = 0
+running = True
+while running:
+    screen.fill(WHITE)
+    draw_grid()
+    draw_pieces()
+
+    score_text = font.render(f"Skóre: {score}", True, BLACK)
+    screen.blit(score_text, (10, HEIGHT - 40))
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            mx, my = pygame.mouse.get_pos()
+            if my > HEIGHT - 100:
+                selected_piece = (mx // 100)
+            else:
+                if selected_piece is not None:
+                    grid_x = mx // CELL_SIZE
+                    grid_y = my // CELL_SIZE
+                    piece = current_pieces[selected_piece]
+                    if can_place(piece, grid_x, grid_y):
+                        place_piece(piece, grid_x, grid_y)
+                        score += check_and_clear()
+                        current_pieces[selected_piece] = None
+                        if all(p is None for p in current_pieces):
+                            current_pieces = [generate_piece() for _ in range(3)]
+                            if not any_moves_left():
+                                running = False
+                        selected_piece = None
+
+    pygame.display.flip()
+    clock.tick(FPS)
+
+pygame.quit()
+sys.exit()
 
 
 
