@@ -1,110 +1,99 @@
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
-let boxes = [];
-let targets = [];
-function getRandomColor() {
- const colors = ["#FF6666", "#66FF66", "#6666FF", "#FFCC66", "#66FFFF"];
- return colors[Math.floor(Math.random() * colors.length)];
-}
-function getRandomSize() {
- return Math.floor(Math.random() * 40) + 40;
-}
-function createBox() {
- const size = getRandomSize();
- return {
-   x: Math.random() * (canvas.width - size),
-   y: Math.random() * (canvas.height - size),
-   size,
-   color: getRandomColor(),
-   isDragging: false
- };
-}
-function createTarget(size, color) {
- return {
-   x: Math.random() * (canvas.width - size),
-   y: Math.random() * (canvas.height - size),
-   size,
-   color
- };
-}
-function generateGameObjects() {
- boxes = [];
- targets = [];
- for (let i = 0; i < 3; i++) {
-   const box = createBox();
-   const target = createTarget(box.size, box.color);
-   boxes.push(box);
-   targets.push(target);
- }
-}
-function draw() {
- ctx.clearRect(0, 0, canvas.width, canvas.height);
- // Draw targets
- targets.forEach(t => {
-   ctx.fillStyle = t.color;
-   ctx.globalAlpha = 0.3;
-   ctx.fillRect(t.x, t.y, t.size, t.size);
-   ctx.globalAlpha = 1;
- });
- // Draw boxes
- boxes.forEach(b => {
-   ctx.fillStyle = b.color;
-   ctx.fillRect(b.x, b.y, b.size, b.size);
- });
-}
-let selectedBox = null;
-let offsetX, offsetY;
-canvas.addEventListener("mousedown", (e) => {
- const rect = canvas.getBoundingClientRect();
- const mx = e.clientX - rect.left;
- const my = e.clientY - rect.top;
- boxes.forEach(box => {
-   if (mx >= box.x && mx <= box.x + box.size &&
-       my >= box.y && my <= box.y + box.size) {
-     selectedBox = box;
-     offsetX = mx - box.x;
-     offsetY = my - box.y;
-     box.isDragging = true;
-   }
- });
-});
-canvas.addEventListener("mouseup", () => {
- if (selectedBox) {
-   checkMatch(selectedBox);
-   selectedBox.isDragging = false;
-   selectedBox = null;
- }
-});
-canvas.addEventListener("mousemove", (e) => {
- if (selectedBox && selectedBox.isDragging) {
-   const rect = canvas.getBoundingClientRect();
-   const mx = e.clientX - rect.left;
-   const my = e.clientY - rect.top;
-   selectedBox.x = mx - offsetX;
-   selectedBox.y = my - offsetY;
-   draw();
- }
-});
-function checkMatch(box) {
- targets.forEach((target, i) => {
-   if (
-     Math.abs(box.x - target.x) < 20 &&
-     Math.abs(box.y - target.y) < 20 &&
-     box.color === target.color &&
-     Math.abs(box.size - target.size) < 10
-   ) {
-     // Correct match
-     boxes.splice(i, 1, createBox());
-     targets.splice(i, 1, createTarget(box.size, box.color));
-   }
- });
-}
-function restartGame() {
- generateGameObjects();
- draw();
-}
-generateGameObjects();
-draw();
+import pygame
+import random
+import sys
+
+# Inicializace Pygame
+pygame.init()
+
+# Konstanty
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 400
+BALL_SIZE = 20
+PLAYER_WIDTH = 80
+PLAYER_HEIGHT = 20
+FPS = 60
+
+# Barvy
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+BLACK = (0, 0, 0)
+
+# Nastavení okna
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Chyť míček!")
+
+# Hráč (čtverec)
+player_x = SCREEN_WIDTH // 2 - PLAYER_WIDTH // 2
+player_y = SCREEN_HEIGHT - PLAYER_HEIGHT - 10
+player_speed = 5
+
+# Míček
+ball_x = random.randint(0, SCREEN_WIDTH - BALL_SIZE)
+ball_y = 0
+ball_speed = 3
+
+# Skóre
+score = 0
+
+# Písma
+font = pygame.font.SysFont(None, 36)
+
+# Funkce pro vykreslení textu (skóre)
+def draw_text(text, font, color, surface, x, y):
+    textobj = font.render(text, 1, color)
+    textrect = textobj.get_rect()
+    textrect.topleft = (x, y)
+    surface.blit(textobj, textrect)
+
+# Hlavní herní smyčka
+running = True
+while running:
+    screen.fill(WHITE)
+    
+    # Zpracování událostí
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Pohyb hráče
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and player_x > 0:
+        player_x -= player_speed
+    if keys[pygame.K_RIGHT] and player_x < SCREEN_WIDTH - PLAYER_WIDTH:
+        player_x += player_speed
+
+    # Pohyb míčku
+    ball_y += ball_speed
+    if ball_y > SCREEN_HEIGHT:
+        # Míček spadl
+        if player_x <= ball_x <= player_x + PLAYER_WIDTH:
+            score += 1  # Hráč chytil míček
+        else:
+            running = False  # Konec hry, pokud míček spadne mimo dosah
+
+        # Obnovení pozice míčku
+        ball_x = random.randint(0, SCREEN_WIDTH - BALL_SIZE)
+        ball_y = 0
+
+    # Vykreslení hráče (čtverec)
+    pygame.draw.rect(screen, BLUE, (player_x, player_y, PLAYER_WIDTH, PLAYER_HEIGHT))
+
+    # Vykreslení míčku
+    pygame.draw.circle(screen, RED, (ball_x + BALL_SIZE // 2, ball_y + BALL_SIZE // 2), BALL_SIZE // 2)
+
+    # Vykreslení skóre
+    draw_text(f"Skóre: {score}", font, BLACK, screen, 10, 10)
+
+    # Aktualizace obrazovky
+    pygame.display.flip()
+
+    # Ovládání FPS
+    pygame.time.Clock().tick(FPS)
+
+# Ukončení Pygame
+pygame.quit()
+sys.exit()
 
 
 
