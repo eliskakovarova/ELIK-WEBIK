@@ -3,6 +3,114 @@ git add .
 git commit -m "Initial commit of BlockBuster 2D game"
 git remote add origin <URL_REPO>
 git push -u origin master
+import pygame
+import sys
+import random
+
+# Konstanty
+GRID_SIZE = 8
+CELL_SIZE = 60
+WIDTH, HEIGHT = GRID_SIZE * CELL_SIZE, GRID_SIZE * CELL_SIZE + 100
+FPS = 60
+
+# Barvy
+WHITE = (255, 255, 255)
+GRAY = (200, 200, 200)
+BLUE = (0, 121, 241)
+RED = (242, 85, 96)
+GREEN = (106, 190, 48)
+YELLOW = (255, 221, 51)
+BLACK = (0, 0, 0)
+
+COLORS = [BLUE, RED, GREEN, YELLOW]
+
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("BlockBuster 2D")
+font = pygame.font.SysFont(None, 36)
+clock = pygame.time.Clock()
+
+# Hrací mřížka
+grid = [[None for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
+
+# Generování náhodného tvaru
+def generate_piece():
+    color = random.choice(COLORS)
+    return {"color": color}
+
+current_piece = generate_piece()
+
+# Funkce pro vykreslení mřížky
+def draw_grid():
+    for y in range(GRID_SIZE):
+        for x in range(GRID_SIZE):
+            rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+            pygame.draw.rect(screen, GRAY, rect, 1)
+            if grid[y][x]:
+                pygame.draw.rect(screen, grid[y][x]["color"], rect.inflate(-4, -4))
+
+# Funkce pro zpracování umístění bloku
+def place_piece(x, y):
+    if grid[y][x] is None:
+        grid[y][x] = current_piece
+        return True
+    return False
+
+# Funkce pro kontrolu a vymazání řad/sloupců
+def check_and_clear():
+    global score
+    to_clear = []
+
+    # Kontrola řad
+    for y in range(GRID_SIZE):
+        if all(grid[y][x] and grid[y][x]["color"] == grid[y][0]["color"] for x in range(GRID_SIZE)):
+            to_clear.append(("row", y))
+
+    # Kontrola sloupců
+    for x in range(GRID_SIZE):
+        if all(grid[y][x] and grid[y][x]["color"] == grid[0][x]["color"] for y in range(GRID_SIZE)):
+            to_clear.append(("col", x))
+
+    # Vymazání
+    for mode, index in to_clear:
+        if mode == "row":
+            for x in range(GRID_SIZE):
+                grid[index][x] = None
+        else:
+            for y in range(GRID_SIZE):
+                grid[y][index] = None
+
+    return len(to_clear) * 10
+
+score = 0
+running = True
+while running:
+    screen.fill(WHITE)
+    draw_grid()
+
+    # Vykreslení skóre
+    score_text = font.render(f"Skóre: {score}", True, BLACK)
+    screen.blit(score_text, (10, HEIGHT - 40))
+
+    # Události
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            mx, my = pygame.mouse.get_pos()
+            grid_x = mx // CELL_SIZE
+            grid_y = my // CELL_SIZE
+
+            if place_piece(grid_x, grid_y):
+                score += check_and_clear()
+                current_piece = generate_piece()
+
+    pygame.display.flip()
+    clock.tick(FPS)
+
+pygame.quit()
+sys.exit()
 
 
 
